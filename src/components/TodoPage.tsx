@@ -18,7 +18,7 @@ const TodoPage = () => {
   const handleDelete = async (id: number) => {
     try {
       await api.delete(`/tasks/${id}`);
-      await handleFetchTasks(); // Rafraîchir la liste des tâches après la suppression
+      await handleFetchTasks();
     } catch (error) {
       console.error('Erreur lors de la suppression de la tâche', error);
     }
@@ -27,16 +27,16 @@ const TodoPage = () => {
   const handleUpdate = async (task: Task, newName: string) => {
     try {
       await api.put(`/tasks/${task.id}`, { name: newName });
-      await handleFetchTasks(); // Rafraîchir après la mise à jour
+      await handleFetchTasks();
     } catch (error) {
       console.error('Erreur lors de la mise à jour de la tâche', error);
     }
   };
   const handleSave = async () => {
-    const newTask = { name: 'Nouvelle tâche' }; // Exemple de nouvelle tâche
+    const newTask = { name: 'Nouvelle tâche' };
     try {
       await api.post('/tasks', newTask);
-      await handleFetchTasks(); // Rafraîchir la liste après l'ajout
+      await handleFetchTasks();
     } catch (error) {
       console.error("Erreur lors de l'ajout de la tâche", error);
     }
